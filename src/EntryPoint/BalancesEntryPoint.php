@@ -12,20 +12,23 @@ class BalancesEntryPoint extends AbstractEntryPoint
 {
 
     /**
-     * @param null|double $amountFrom
-     * @param null|double $amountTo
-     * @param null|DateTime $asAtDate
+     * @param null|double     $amountFrom
+     * @param null|double     $amountTo
+     * @param null|DateTime   $asAtDate
      * @param Pagination|null $pagination
-     * @param null|string $onBehalfOf
+     * @param null|string     $onBehalfOf
+     * @param null|string     $scope
      *
      * @return Balances
+     * @throws \Exception
      */
     public function find(
         $amountFrom = null,
         $amountTo = null,
         $asAtDate = null,
         Pagination $pagination = null,
-        $onBehalfOf = null
+        $onBehalfOf = null,
+        $scope = null
     ) {
         if (null === $pagination) {
             $pagination = new Pagination();
@@ -41,7 +44,8 @@ class BalancesEntryPoint extends AbstractEntryPoint
                 'page' => $pagination->getCurrentPage(),
                 'per_page' => $pagination->getPerPage(),
                 'order_asc_desc' => $pagination->getOrderAscDesc(),
-                'on_behalf_of' => $onBehalfOf
+                'on_behalf_of' => $onBehalfOf,
+                'scope' => $scope
             ]
         );
         $balances = [];
