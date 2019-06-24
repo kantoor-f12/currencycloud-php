@@ -101,11 +101,6 @@ class Payment implements EntityInterface
     private $purposeCode;
 
     /**
-     * @var string|null
-     */
-    private $onBehalfOf;
-
-    /**
      * @param string $currency
      * @param string $beneficiaryId
      * @param string $amount
@@ -548,21 +543,5 @@ class Payment implements EntityInterface
     {
         $this->purposeCode = $purposeCode;
         return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getOnBehalfOf(): ?string
-    {
-        return $this->onBehalfOf;
-    }
-
-    /**
-     * @param string|null $onBehalfOf
-     */
-    public function setOnBehalfOf(?string $onBehalfOf): void
-    {
-        $this->onBehalfOf = $onBehalfOf;
     }
 }

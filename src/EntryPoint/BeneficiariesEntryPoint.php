@@ -27,7 +27,9 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
                 $beneficiary,
                 true,
                 $onBehalfOf
-            )
+            ) + [
+                'on_behalf_of' => $onBehalfOf
+            ]
         );
         return $this->createBeneficiaryFromResponse($response, true);
     }
@@ -94,7 +96,9 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
             $pagination = new Pagination();
         }
         return $this->doFind('beneficiaries/find', $beneficiary, $pagination, function ($entity, $onBehalfOf) {
-            return $this->convertBeneficiaryToRequest($entity, $onBehalfOf);
+            return $this->convertBeneficiaryToRequest($entity, $onBehalfOf) + [
+                'on_behalf_of' => $onBehalfOf
+            ];
         }, function ($response) {
             return $this->createBeneficiaryFromResponse($response);
         }, function (array $entities, Pagination $pagination) {
