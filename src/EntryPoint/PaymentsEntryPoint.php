@@ -55,9 +55,6 @@ class PaymentsEntryPoint extends AbstractEntityEntryPoint
             'unique_request_id' => $payment->getUniqueRequestId(),
             'purpose_code' => $payment->getPurposeCode()
         ];
-        if (!empty($payment->getOnBehalfOf())) {
-            $common['on_behalf_of'] = $payment->getOnBehalfOf();
-        }
         if ($convertForFind) {
             return $common + [
                 'short_reference' => $payment->getShortReference(),
