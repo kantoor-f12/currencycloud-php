@@ -23,7 +23,7 @@ class FundingAccounts extends PaginatedData {
     }
 
     /**
-     * @return Iban[]
+     * @return FundingAccount[]
      */
     public function getFundingAccounts()
     {
@@ -31,7 +31,7 @@ class FundingAccounts extends PaginatedData {
     }
 
     /**
-     * @param Iban[] $fundingAccounts
+     * @param FundingAccount[] $fundingAccounts
      */
     public function setFundingAccounts($fundingAccounts)
     {
