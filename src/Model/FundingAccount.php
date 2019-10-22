@@ -117,7 +117,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getAccountNumberType(): string
+    public function getAccountNumberType()
     {
         return $this->accountNumberType;
     }
@@ -153,7 +153,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getBankName(): string
+    public function getBankName()
     {
         return $this->bankName;
     }
@@ -171,7 +171,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getBankAddress(): string
+    public function getBankAddress()
     {
         return $this->bankAddress;
     }
@@ -189,7 +189,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getBankCountry(): string
+    public function getBankCountry()
     {
         return $this->bankCountry;
     }
@@ -225,7 +225,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getPaymentType(): string
+    public function getPaymentType()
     {
         return $this->paymentType;
     }
@@ -243,7 +243,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getRegularRoutingCode(): string
+    public function getRegularRoutingCode()
     {
         return $this->regularRoutingCode;
     }
@@ -261,7 +261,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getRegularRoutingCodeType(): string
+    public function getRegularRoutingCodeType()
     {
         return $this->regularRoutingCodeType;
     }
@@ -279,7 +279,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getPriorityRoutingCode(): string
+    public function getPriorityRoutingCode()
     {
         return $this->priorityRoutingCode;
     }
@@ -297,7 +297,7 @@ class FundingAccount implements EntityInterface {
     /**
      * @return string
      */
-    public function getPriorityRoutingCodeType(): string
+    public function getPriorityRoutingCodeType()
     {
         return $this->priorityRoutingCodeType;
     }
