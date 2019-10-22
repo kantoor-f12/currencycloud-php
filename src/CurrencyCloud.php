@@ -75,6 +75,10 @@ class CurrencyCloud
      */
     private $ibansEntryPoint;
     /**
+     * @var FundingAccountsEntryPoint
+     */
+    private $fundingAccountsEntryPoint;
+    /**
      * @var ConversionsEntryPoint
      */
     private $conversionsEntryPoint;
@@ -278,6 +282,14 @@ class CurrencyCloud
     public function ibans()
     {
         return $this->ibansEntryPoint;
+    }
+
+    /**
+     * @return FundingAccountsEntryPoint
+     */
+    public function fundingAccounts()
+    {
+        return $this->fundingAccountsEntryPoint;
     }
 
     /**
