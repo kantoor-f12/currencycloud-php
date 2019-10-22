@@ -9,6 +9,7 @@ use CurrencyCloud\Model\Pagination;
 use CurrencyCloud\Model\Payer;
 use CurrencyCloud\Model\Payment;
 use CurrencyCloud\Model\PaymentConfirmation;
+use CurrencyCloud\Model\PaymentDeliveryDate;
 use CurrencyCloud\Model\Payments;
 use CurrencyCloud\Model\PaymentSubmission;
 use DateTime;
@@ -53,7 +54,8 @@ class PaymentsEntryPoint extends AbstractEntityEntryPoint
             'beneficiary_id' => $payment->getBeneficiaryId(),
             'conversion_id' => $payment->getConversionId(),
             'unique_request_id' => $payment->getUniqueRequestId(),
-            'purpose_code' => $payment->getPurposeCode()
+            'purpose_code' => $payment->getPurposeCode(),
+            'charge_type' => $payment->getChargeType()
         ];
         if ($convertForFind) {
             return $common + [
@@ -124,7 +126,8 @@ class PaymentsEntryPoint extends AbstractEntityEntryPoint
             ->setUpdatedAt(new DateTime($response->updated_at))
             ->setUniqueRequestId($response->unique_request_id)
             ->setFailureReturnedAmount($response->failure_returned_amount)
-            ->setPurposeCode($response->purpose_code);
+            ->setPurposeCode($response->purpose_code)
+            ->setChargeType($response->charge_type);
 
         $this->setIdProperty($payment, $response->id);
         return $payment;
@@ -352,4 +355,26 @@ class PaymentsEntryPoint extends AbstractEntityEntryPoint
         );
         return $paymentConfirmation;
     }
+
+
+    /**
+     * @param DateTime $paymentDate
+     * @param string $paymentType
+     * @param string $currency
+     * @param string $bankCountry
+     *
+     * @return PaymentDeliveryDate
+     */
+    public function paymentDeliveryDate($paymentDate, $paymentType, $currency, $bankCountry){
+        $response = $this->request('GET',
+            'payments/payment_delivery_date',
+            ['payment_date' => $paymentDate->format('Y-m-d'),
+                'payment_type' => $paymentType,
+                'currency' => $currency,
+                'bank_country' => $bankCountry]);
+
+        return new PaymentDeliveryDate(new DateTime($response->payment_date),new DateTime($response->payment_delivery_date),
+            new DateTime($response->payment_cutoff_time),$response->payment_type,$response->currency,$response->bank_country);
+    }
+
 }
