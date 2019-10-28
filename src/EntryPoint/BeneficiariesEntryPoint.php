@@ -96,7 +96,7 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
             $pagination = new Pagination();
         }
         return $this->doFind('beneficiaries/find', $beneficiary, $pagination, function ($entity, $onBehalfOf) {
-            return $this->convertBeneficiaryToRequest($entity, $onBehalfOf) + [
+            return $this->convertBeneficiaryToRequest($entity, $onBehalfOf, false, true) + [
                 'on_behalf_of' => $onBehalfOf
             ];
         }, function ($response) {
@@ -126,13 +126,19 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
 
     /**
      * @param Beneficiary $beneficiary
-     * @param bool $convertForValidate
-     * @param bool $convertForUpdate
+     * @param bool        $convertForValidate
+     * @param bool        $convertForUpdate
+     *
+     * @param bool        $convertForFind
      *
      * @return array
      */
-    protected function convertBeneficiaryToRequest(Beneficiary $beneficiary, $convertForValidate = false, $convertForUpdate = false)
-	{
+    protected function convertBeneficiaryToRequest(
+        Beneficiary $beneficiary,
+        $convertForValidate = false,
+        $convertForUpdate = false,
+        $convertForFind = false
+    ){
         $isDefaultBeneficiary = $beneficiary->isDefaultBeneficiary();
         $common = [
             'bank_country' => $beneficiary->getBankCountry(),
@@ -165,6 +171,19 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
             'beneficiary_identification_value' => $beneficiary->getBeneficiaryIdentificationValue(),
             'payment_types' => $beneficiary->getPaymentTypes()
         ];
+
+        // find beneficiary endpoint uses subProperties for setting the routing_code types and values
+        if ($convertForFind) {
+            $common['routing_code_type[0]'] = $common['routing_code_type_1'];
+            $common['routing_code_value[0]'] = $common['routing_code_value_1'];
+            $common['routing_code_type[1]'] = $common['routing_code_type_2'];
+            $common['routing_code_value[1]'] = $common['routing_code_value_2'];
+
+            unset($common['routing_code_type_1']);
+            unset($common['routing_code_value_1']);
+            unset($common['routing_code_type_2']);
+            unset($common['routing_code_value_2']);
+        }
 
         if ($convertForValidate) {
             return $common;
