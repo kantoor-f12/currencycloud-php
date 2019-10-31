@@ -128,6 +128,7 @@ class CurrencyCloud
      * @param TransactionsEntryPoint $transactionsEntryPoint
      * @param TransfersEntryPoint $transfersEntryPoint
      * @param VansEntryPoint $vanEntryPoint
+     * @param FundingAccountsEntryPoint $fundingAccountsEntryPoint
      */
     public function __construct(
         Session $session,
@@ -146,7 +147,8 @@ class CurrencyCloud
         SettlementsEntryPoint $settlementsEntryPoint,
         TransactionsEntryPoint $transactionsEntryPoint,
         TransfersEntryPoint $transfersEntryPoint,
-        VansEntryPoint $vanEntryPoint
+        VansEntryPoint $vanEntryPoint,
+        FundingAccountsEntryPoint $fundingAccountsEntryPoint
     ) {
         $this->referenceEntryPoint = $referenceEntryPoint;
         $this->session = $session;
@@ -165,6 +167,7 @@ class CurrencyCloud
         $this->settlementsEntryPoint = $settlementsEntryPoint;
         $this->transfersEntryPoint = $transfersEntryPoint;
         $this->vansEntryPoint = $vanEntryPoint;
+        $this->fundingAccountsEntryPoint = $fundingAccountsEntryPoint;
     }
 
     /**
@@ -217,7 +220,8 @@ class CurrencyCloud
             new SettlementsEntryPoint($entityManager, $client),
             new TransactionsEntryPoint($client),
             new TransfersEntryPoint($entityManager, $client),
-            new VansEntryPoint($entityManager, $client)
+            new VansEntryPoint($entityManager, $client),
+            new FundingAccountsEntryPoint($entityManager, $client)
         );
     }
 
