@@ -1,10 +1,11 @@
 <?php
+
 namespace CurrencyCloud\Model;
 
 use DateTime;
 
-class FundingAccount implements EntityInterface {
-
+class FundingAccount implements EntityInterface
+{
     /**
      * @var string
      */
@@ -46,21 +47,13 @@ class FundingAccount implements EntityInterface {
      */
     private $paymentType;
     /**
-     * @var string
+     * @var string`
      */
-    private $regularRoutingCode;
+    private $routingCode;
     /**
      * @var string
      */
-    private $regularRoutingCodeType;
-    /**
-     * @var string
-     */
-    private $priorityRoutingCode;
-    /**
-     * @var string
-     */
-    private $priorityRoutingCodeType;
+    private $routingCodeType;
     /**
      * @var DateTime
      */
@@ -69,6 +62,44 @@ class FundingAccount implements EntityInterface {
      * @var DateTime
      */
     private $updatedAt;
+
+    /**
+     * FundingAccount constructor.
+     * @param string $id
+     * @param string $accountId
+     * @param string $accountNumber
+     * @param string $accountNumberType
+     * @param string $accountHolderName
+     * @param string $bankName
+     * @param string $bankAddress
+     * @param string $bankCountry
+     * @param string $currency
+     * @param string $paymentType
+     * @param string $routingCode
+     * @param string $routingCodeType
+     * @param DateTime $createdAt
+     * @param DateTime $updatedAt
+     */
+    public function __construct($id, $accountId, $accountNumber, $accountNumberType, $accountHolderName, $bankName,
+                                $bankAddress, $bankCountry, $currency, $paymentType, $routingCode,
+                                $routingCodeType, $createdAt,$updatedAt)
+    {
+        $this->id = $id;
+        $this->accountId = $accountId;
+        $this->accountNumber = $accountNumber;
+        $this->accountNumberType = $accountNumberType;
+        $this->accountHolderName = $accountHolderName;
+        $this->bankName = $bankName;
+        $this->bankAddress = $bankAddress;
+        $this->bankCountry = $bankCountry;
+        $this->currency = $currency;
+        $this->paymentType = $paymentType;
+        $this->routingCode = $routingCode;
+        $this->routingCodeType = $routingCodeType;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
+    }
+
 
     /**
      * @return string
@@ -87,31 +118,11 @@ class FundingAccount implements EntityInterface {
     }
 
     /**
-     * @param string $accountId
-     * @return $this
-     */
-    public function setAccountId($accountId)
-    {
-        $this->accountId = $accountId;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getAccountNumber()
     {
         return $this->accountNumber;
-    }
-
-    /**
-     * @param string $accountNumber
-     * @return $this
-     */
-    public function setAccountNumber($accountNumber)
-    {
-        $this->accountNumber = $accountNumber;
-        return $this;
     }
 
     /**
@@ -123,31 +134,11 @@ class FundingAccount implements EntityInterface {
     }
 
     /**
-     * @param string $accountNumberType
-     * @return $this
-     */
-    public function setAccountNumberType($accountNumberType)
-    {
-        $this->accountNumberType = $accountNumberType;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getAccountHolderName()
     {
         return $this->accountHolderName;
-    }
-
-    /**
-     * @param string $accountHolderName
-     * @return $this
-     */
-    public function setAccountHolderName($accountHolderName)
-    {
-        $this->accountHolderName = $accountHolderName;
-        return $this;
     }
 
     /**
@@ -159,31 +150,11 @@ class FundingAccount implements EntityInterface {
     }
 
     /**
-     * @param string $bankName
-     * @return $this
-     */
-    public function setBankName($bankName)
-    {
-        $this->bankName = $bankName;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getBankAddress()
     {
         return $this->bankAddress;
-    }
-
-    /**
-     * @param string $bankAddress
-     * @return $this
-     */
-    public function setBankAddress($bankAddress)
-    {
-        $this->bankAddress = $bankAddress;
-        return $this;
     }
 
     /**
@@ -195,31 +166,11 @@ class FundingAccount implements EntityInterface {
     }
 
     /**
-     * @param string $bankCountry
-     * @return $this
-     */
-    public function setBankCountry($bankCountry)
-    {
-        $this->bankCountry = $bankCountry;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getCurrency()
     {
         return $this->currency;
-    }
-
-    /**
-     * @param string $currency
-     * @return $this
-     */
-    public function setCurrency($currency)
-    {
-        $this->currency = $currency;
-        return $this;
     }
 
     /**
@@ -231,87 +182,20 @@ class FundingAccount implements EntityInterface {
     }
 
     /**
-     * @param string $paymentType
-     * @return $this
+     * @return string
      */
-    public function setPaymentType($paymentType)
+    public function getRoutingCode()
     {
-        $this->paymentType = $paymentType;
-        return $this;
+        return $this->routingCode;
     }
 
     /**
      * @return string
      */
-    public function getRegularRoutingCode()
+    public function getRoutingCodeType()
     {
-        return $this->regularRoutingCode;
+        return $this->routingCodeType;
     }
-
-    /**
-     * @param string $regularRoutingCode
-     * @return $this
-     */
-    public function setRegularRoutingCode($regularRoutingCode)
-    {
-        $this->regularRoutingCode = $regularRoutingCode;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRegularRoutingCodeType()
-    {
-        return $this->regularRoutingCodeType;
-    }
-
-    /**
-     * @param string $regularRoutingCodeType
-     * @return $this
-     */
-    public function setRegularRoutingCodeType($regularRoutingCodeType)
-    {
-        $this->regularRoutingCodeType = $regularRoutingCodeType;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPriorityRoutingCode()
-    {
-        return $this->priorityRoutingCode;
-    }
-
-    /**
-     * @param string $priorityRoutingCode
-     * @return $this
-     */
-    public function setPriorityRoutingCode($priorityRoutingCode)
-    {
-        $this->priorityRoutingCode = $priorityRoutingCode;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPriorityRoutingCodeType()
-    {
-        return $this->priorityRoutingCodeType;
-    }
-
-    /**
-     * @param string $priorityRoutingCodeType
-     * @return $this
-     */
-    public function setPriorityRoutingCodeType($priorityRoutingCodeType)
-    {
-        $this->priorityRoutingCodeType = $priorityRoutingCodeType;
-        return $this;
-    }
-
 
     /**
      * @return DateTime
@@ -322,31 +206,11 @@ class FundingAccount implements EntityInterface {
     }
 
     /**
-     * @param DateTime $createdAt
-     * @return $this
-     */
-    public function setCreatedAt(DateTime $createdAt = null)
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    /**
      * @return DateTime
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * @param DateTime $updatedAt
-     * @return $this
-     */
-    public function setUpdatedAt(DateTime $updatedAt = null)
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
     }
 
 }
