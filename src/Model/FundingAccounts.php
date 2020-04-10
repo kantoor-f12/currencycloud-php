@@ -1,9 +1,11 @@
 <?php
+
 namespace CurrencyCloud\Model;
 
 use ArrayIterator;
 
-class FundingAccounts extends PaginatedData {
+class FundingAccounts extends PaginatedData
+{
 
     /**
      * @var FundingAccount[]
@@ -11,12 +13,10 @@ class FundingAccounts extends PaginatedData {
     private $fundingAccounts;
 
     /**
-     * Ibans constructor.
-     *
-     * @param array      $fundingAccounts
+     * @param FundingAccount[] $fundingAccounts
      * @param Pagination $pagination
      */
-    function __construct(array $fundingAccounts, Pagination $pagination)
+    public function __construct(array $fundingAccounts, Pagination $pagination)
     {
         parent::__construct($pagination);
         $this->fundingAccounts = $fundingAccounts;
@@ -28,14 +28,6 @@ class FundingAccounts extends PaginatedData {
     public function getFundingAccounts()
     {
         return $this->fundingAccounts;
-    }
-
-    /**
-     * @param FundingAccount[] $fundingAccounts
-     */
-    public function setFundingAccounts($fundingAccounts)
-    {
-        $this->fundingAccounts = $fundingAccounts;
     }
 
     /**
